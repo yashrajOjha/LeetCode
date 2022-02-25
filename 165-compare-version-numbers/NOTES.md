@@ -1,1 +1,1 @@
-​
+​Every number is a revision joined by dots, we must compare the versions in left to right order, find the max of the two string lengths, get the number from that index from the strings if the number at that index exists then take it as an integer, or else use 0 instead, compare the two numbers. 
