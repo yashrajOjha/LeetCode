@@ -1,0 +1,5 @@
+Brute force will result in time limit exceeded, but we use three for loops, i from 0, j from i+1 and k from j+1, add nums[i]+nums[j]+nums[k] ==0 and make sure i != j, i != k, and j != k, then add the three numbers to a list, sort it, check if the list is already present in the main list, if not then add the sub list to the main list. **Basically trying out all triplets**
+​
+**Optimal using two pointers**
+```a+b+c=0, becomes b+c=-a```
+We use two pointers, and a fixed pointer(which moves one step at a time), low points at i+1, and high points at n-1, until low<high keep checking, find the sum of nums[low]+nums[high], if the sum is < required sum(-a) then increase low, if sum is > required sum(-a) then decrease high pointer, we also need to ignore similar low and high values by moving the pointer, then we again increment low and decrement high so we stand at unique lows and unique high values.
