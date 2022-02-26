@@ -7,4 +7,4 @@ This repo contains all the question I have practiced till date on LeetCode
 | Question | Difficulty | Type |
 | ------------- | ------------- | ------------- |
 | 136. Single Number  | Easy | Array |
-| [169. Majority Element](LeetCode/169-majority-element/) | Easy | Array/HashMap |
+| [169. Majority Element](LeetCode/tree/main/169-majority-element) | Easy | Array/HashMap |
