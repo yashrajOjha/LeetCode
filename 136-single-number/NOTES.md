@@ -1,0 +1,1 @@
+XOR to two same elements will be 0, so 2 ^ 2 ^ 1 will technically be 0 ^ 1, which is 1.
