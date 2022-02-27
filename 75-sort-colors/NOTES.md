@@ -25,6 +25,4 @@ One pass approach, the basic assumption is that all the 0 should move to the lef
 ​
 Start low at 0, index at 0, as soon as the number at index is 0, swap the value with value at low, if the number at index is 2, then swap the value with the value at high index, if value at index is 1 then just increment index and move on.
 ​
-```
-```
 ​
