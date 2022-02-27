@@ -13,25 +13,32 @@
  *     }
  * }
  */
-import java.util.AbstractMap;
 class Solution {
     public int widthOfBinaryTree(TreeNode root) {
-        if (root == null) return 0;
-        int maxW = 0;
-        Queue<Map.Entry<TreeNode, Integer>> q = new LinkedList<Map.Entry<TreeNode, Integer>>(); // we need to pair the index and the element
-        q.offer(new AbstractMap.SimpleEntry(root, 1));
+        
+        if(root == null) return 0;
+        
+        int result = Integer.MIN_VALUE;
 
-        while (!q.isEmpty()) {
-            int l = q.peek().getValue(), r = l; // right started same as left
-            for (int i = 0, n = q.size(); i < n; i++) {
-                TreeNode node = q.peek().getKey();
-                r = q.poll().getValue();
-                if (node.left != null) q.offer(new AbstractMap.SimpleEntry(node.left, r * 2));
-                if (node.right != null) q.offer(new AbstractMap.SimpleEntry(node.right, r * 2 + 1));
+        ArrayDeque<Pair<TreeNode, Integer>> q = new ArrayDeque<Pair<TreeNode, Integer>>();
+        q.add(new Pair<>(root, 0));
+
+        while(!q.isEmpty()) {
+
+            int size = q.size();
+            result = Math.max(result, (q.getLast().getValue() - q.getFirst().getValue() + 1));
+
+            for(int i = 0; i < size; i++) {
+
+                Pair<TreeNode, Integer> pair = q.poll();
+                TreeNode item = pair.getKey();
+                int index = pair.getValue();
+
+                if(item.left != null) q.add(new Pair<>(item.left, 2*index+1));
+                if(item.right != null) q.add(new Pair<>(item.right, 2*index+2));
             }
-            maxW = Math.max(maxW, r + 1 - l);
         }
 
-        return maxW;
+        return result;
     }
 }
