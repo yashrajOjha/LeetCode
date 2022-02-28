@@ -1,0 +1,1 @@
+Here the idea is to check for consecutiveness, get the number at index as start, and check if `num[index]+1==num[index+1]`, 0+1 == 1 means the current and the next element are consecutive, if the condition of num[index]+1==num[index+1] fails then add the start and nums[i] as the range, else just add num[i].
