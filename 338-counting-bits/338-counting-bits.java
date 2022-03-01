@@ -1,13 +1,14 @@
 class Solution {
     public int[] countBits(int n) {
         int []count = new int[n+1];
-        for(int i=0;i<=n;i++){
-            String s = Integer.toBinaryString(i);
-            int c=0;
-            for(char ch:s.toCharArray()){
-                if(ch=='1') c++;
+        count[0]=0;
+        int power=1;
+        for(int i=1,j=0;i<=n;i++,j++){
+            if(i==power){
+                power*=2;
+                j=0;
             }
-            count[i]=c;
+            count[i]=count[j]+1;
         }
         return count;
     }
