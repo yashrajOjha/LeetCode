@@ -1,0 +1,1 @@
+The idea is to compare the starting and ending of two intervals, if the start of current interval is lesser than the end of previous interval then there is an overlap, if the interval is empty or there is no overlap just add the value to a list `merged.getLast()[1]<interval[0]` else if overlap exists then merge current interval with the previous interval.
