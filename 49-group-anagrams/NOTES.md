@@ -1,0 +1,1 @@
+The idea is to obtain the string, sort it check if the sorted string is a key in the hashmap, if not then add the string with a new arraylist as value, then add the value of the actual string to the array list for the key.
