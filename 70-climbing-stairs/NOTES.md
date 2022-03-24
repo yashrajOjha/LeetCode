@@ -3,8 +3,10 @@
 * count the number of ways "anything is possible"
 * out of a given array find min or max
 ​
+
 Basically while applying the concept of trying all possible ways.
 ​
+
 To make things easier:
 * We must try to represent things as index,
 * Try all possible work on index
