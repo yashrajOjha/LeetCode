@@ -1,14 +1,17 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-     int arr[] = new int[nums.length];
-     for(int n:nums){
-         arr[n-1]++;
-     }
-     for(int i=0;i<arr.length;i++){
-         if(arr[i]>1){
-             return i+1;
-         }
-     }
-    return 0;
+        int slow =nums[0];
+        int fast = nums[0];
+        do{
+            slow=nums[slow];
+            fast = nums[nums[fast]];
+        }while(slow!=fast);
+            
+        fast = nums[0]; //first collision obtained now placing the fast at start
+        while(slow!=fast){
+            slow=nums[slow];
+            fast=nums[fast];
+        }
+        return slow;
     }
 }
