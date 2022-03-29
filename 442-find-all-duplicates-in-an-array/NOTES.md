@@ -1,0 +1,1 @@
+Brute Force: Create a count array, traverse array and find duplicate elements.
