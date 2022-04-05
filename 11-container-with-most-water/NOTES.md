@@ -12,4 +12,3 @@ area = Math.max(area, Area);
 * if j is updated(decrement), then height of j will increase but because height of i is less the water capacity will still be less, or height of j will decrease and water capacity will reduce further.
 ​
 So technically jiska bhi height minimum hai uske side se increment ya decrement kardo.
-* if i is updated, height increased, then height might increase and so will water capacity,
