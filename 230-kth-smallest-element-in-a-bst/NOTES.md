@@ -1,0 +1,1 @@
+First do a level order traversal and store the elements in a list, then sort the list and get the k-1th element from the list.
