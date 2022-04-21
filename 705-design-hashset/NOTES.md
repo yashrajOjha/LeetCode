@@ -1,0 +1,1 @@
+Use an array of the size mentioned for the key and add and delete the element to their respective position.
