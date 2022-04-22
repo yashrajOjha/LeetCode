@@ -1,3 +1,1 @@
-The simplest solution would be is to use an array, but for obvious reasons it fails.
-* For larger numbers we could try num%100 and store the value at that index but this casued a problem called collision where 1005%100 and 2005%100 would resullt in same index having intercepting values,
-* For the reason above, we use chaining using linked list, same index (num%100) would have corresponding values linked.
+​
