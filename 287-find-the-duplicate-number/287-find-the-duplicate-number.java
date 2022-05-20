@@ -3,7 +3,7 @@ class Solution {
         int len =nums.length;
         for(int num:nums){
             int index= Math.abs(num);
-            System.out.println(index);
+            // System.out.println(index);
             if(nums[index]<0){
                 return index;
             }
