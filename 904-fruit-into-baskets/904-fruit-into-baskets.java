@@ -1,19 +1,16 @@
 class Solution {
     public int totalFruit(int[] fruits) {
-        int max=0,count=0;
-        int m[]=new int[40001];
-        for(int l=0,r=0;r<fruits.length;r++){
-            if(m[fruits[r]]++==0){
-                count++;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int res=0;
+        for(int i=0,j=0;j<fruits.length;j++){
+            map.put(fruits[j],map.getOrDefault(fruits[j],0)+1);
+            while (map.size() > 2) {
+                map.put(fruits[i], map.get(fruits[i]) - 1);
+                if (map.get(fruits[i]) == 0) map.remove(fruits[i]);
+                i++;
             }
-            while(count>2){
-                if(--m[fruits[l]]==0){
-                    count--;
-                }
-                l++;
-            }
-            max = Math.max(max, r-l+1);
+            res = Math.max(res, j - i + 1);
         }
-        return max;
+        return res;
     }
 }
