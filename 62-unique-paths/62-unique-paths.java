@@ -1,17 +1,22 @@
 class Solution {
-    HashMap<String, Integer> map=new HashMap<>();
     public int uniquePaths(int m, int n) {
-        return uniqPath(m-1,n-1);
-    }
-    public int uniqPath(int m, int n){
-        if(m==0 || n==0) return 1;
-        String cell=new String(m+" "+n);
-        if(map.containsKey(cell)){
-            return map.get(cell);
+        int dp[][] = new int[m][n];
+        for(int i=0;i<=m-1;i++){
+            for(int j=0;j<=n-1;j++){
+                if(i==0 && j==0){
+                    dp[i][j]=1;
+                }else{
+                    int up=0,left=0;
+                    if(i>0){
+                        up = dp[i-1][j];
+                    }
+                    if(j>0){
+                        left = dp[i][j-1];
+                    }
+                    dp[i][j] = up+left;
+                }
+            }
         }
-        int up = uniqPath(m-1,n);
-        int left = uniqPath(m,n-1);
-        map.put(cell, up+left);
-        return up+left;
+        return dp[m-1][n-1];
     }
 }
