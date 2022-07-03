@@ -9,14 +9,33 @@
  * }
  */
 class Solution {
-    public boolean isPalindrome(ListNode head) {
-        ArrayList<Integer> arr=new ArrayList<>();
-    while(head != null) {
-        arr.add(head.val);
-        head = head.next;
+    public ListNode reverse(ListNode head){
+        ListNode prev=null,nex=null;
+        ListNode curr=head;
+        while(curr!=null){
+            nex=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=nex;
+        }
+        return prev;
     }
-    for(int i=0;i<arr.size()/2;i++) 
-        if(arr.get(i) != arr.get(arr.size()-i-1)) return false;
-    return true;
+    public boolean isPalindrome(ListNode head) {
+        //first find middle
+        ListNode fast=head;
+        ListNode slow=head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        slow.next=reverse(slow.next);
+        slow=slow.next;
+        ListNode dummy=head;
+        while(slow!=null){
+            if(dummy.val!=slow.val) return false;
+            dummy=dummy.next;
+            slow=slow.next;
+        }
+        return true;
     }
 }
