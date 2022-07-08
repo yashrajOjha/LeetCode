@@ -1,29 +1,18 @@
 class Solution {
-    public void subseq(int index, int[] nums, List<Integer> arr, List<List<Integer>> res){
-        if(index==nums.length){
-            res.add(new ArrayList<Integer>(arr));
-            return;
+    public void findSubset(int index, int[] nums, List<Integer> ds, List<List<Integer>> ans){
+        ans.add(new ArrayList<Integer>(ds));
+        for(int i=index; i<nums.length;i++){
+            if(i!=index && nums[i]==nums[i-1]) continue;
+            ds.add(nums[i]);
+            findSubset(i+1,nums, ds,ans);
+            ds.remove(ds.size()-1);
         }
-        arr.add(nums[index]);
-        subseq(index+1, nums, arr, res);
-        // res.add(arr);
-        arr.remove(arr.size()-1);
-        subseq(index+1, nums, arr,res);
     }
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
-        List<Integer> arr= new ArrayList<>();
+        //how will you get the duplicates in side by side so we sort it
         Arrays.sort(nums);
-        res.add(new ArrayList<>());
-        subseq(0,nums,arr,res);
-        List<List<Integer>> newAns = new ArrayList<List<Integer>>();
-        HashSet<List<Integer>> set = new HashSet<>();
-        for(List<Integer> curr : res){
-            set.add(curr);
-        }
-        for(List<Integer> curr : set){
-            newAns.add(curr);
-        }
-        return newAns;
+        List<List<Integer>> ans = new ArrayList<>();
+        findSubset(0,nums, new ArrayList<Integer>(),ans);
+        return ans;
     }
 }
