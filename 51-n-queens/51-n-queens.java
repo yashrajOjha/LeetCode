@@ -1,33 +1,5 @@
 class Solution {
-    /*lets check if it is safe to fill up or not, if a queen can be placed at a position or not.
-    We need to check for upper left diagonal (not right we havent yet placed a Q on the right), on the horizontal left, and lower left diagonal. */
-    public boolean isSafe(int row, int col, char board[][]){
-        int dRow = row;
-        int dCol = col;
-        //for upper diagonal
-        while(row>=0 && col>=0){
-            if(board[row][col]=='Q')return false;
-            row--;
-            col--;
-        }
-        col=dCol;
-        row=dRow;
-        //for moving horizontally left
-        while(col>=0){
-            if(board[row][col]=='Q')return false;
-            col--;
-        }
-        col = dCol;
-        row=dRow;
-        //for lower diagonal
-        while(row<board.length && col>=0){
-            if(board[row][col]=='Q')return false;
-            row++;
-            col--;
-        }
-        return true;
-    }
-    public void solve(int col, char board[][], List<List<String>> res, int n){
+    public void solve(int col, char board[][], List<List<String>> res, int n, int leftRow[], int leftDiagonal[], int rightDiagonal[]){
         //the moment we reach n-1th index we reach the base case
         if(col==board.length){
             //store it in list of list
@@ -36,10 +8,16 @@ class Solution {
         }
         for(int row=0;row<n;row++){
             //check if it is sage to place the Q
-            if(isSafe(row,col,board)){
+            if(leftRow[row]==0 && leftDiagonal[row+col]==0 && rightDiagonal[n-1+col-row]==0){
                 board[row][col] = 'Q';
-                solve(col+1,board,res, n);
+                leftRow[row]=1;
+                leftDiagonal[row+col]=1;
+                rightDiagonal[n-1+col-row]=1;
+                solve(col+1,board,res, n,leftRow, leftDiagonal, rightDiagonal);
                 board[row][col]='.'; //omit the Q this is a backtrack step
+                leftRow[row]=0;
+                leftDiagonal[row+col]=0;
+                rightDiagonal[n-1+col-row]=0;
             }
         }
     }
@@ -58,8 +36,11 @@ class Solution {
                 board[i][j]='.';
             }
         }
+        int leftRow[] = new int[n];
+        int leftDiagonal[] = new int[2*n-1];
+        int rightDiagonal[] = new int[2*n-1];
         List<List<String>> res = new ArrayList<>();
-        solve(0,board,res,n);
+        solve(0,board,res,n,leftRow,leftDiagonal,rightDiagonal);
         return res;
     }
 }
