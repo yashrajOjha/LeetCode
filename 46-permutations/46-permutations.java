@@ -1,24 +1,23 @@
 class Solution {
-    private void recurPerm(int nums[], List<Integer> ds, List<List<Integer>> ans, boolean freq[]){
-        if(ds.size()==nums.length){
+    private void recurPerm(int arr[], List<Integer> ds, List<List<Integer>> ans, int map[]){
+        if(ds.size()==arr.length){
             ans.add(new ArrayList<>(ds));
-            return;
         }
-        for(int i=0;i<nums.length;i++){
-            if(!freq[i]){
-                freq[i]=true; //mark the element as truw
-                ds.add(nums[i]); //add it to data structure
-                recurPerm(nums,ds,ans,freq); //go down the recursive tree
-                ds.remove(ds.size()-1); //remove from the data structure
-                freq[i]=false; //unmark the element
+        for(int i=0;i<arr.length;i++){
+            if(map[i]!=1){
+                map[i]=1;
+                ds.add(arr[i]);
+                recurPerm(arr,ds,ans,map);
+                ds.remove(ds.size()-1);
+                map[i]=0;
             }
         }
     }
     public List<List<Integer>> permute(int[] nums) {
      List<List<Integer>> ans = new ArrayList<>();
      List<Integer> ds =new ArrayList<>();
-     boolean freq[] = new boolean[nums.length];
-     recurPerm(nums, ds, ans,freq);
+     int map[] = new int[nums.length];
+     recurPerm(nums, ds, ans,map);
      return ans;
     }
 }
