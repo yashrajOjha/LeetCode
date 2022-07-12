@@ -1,23 +1,27 @@
 class Solution {
-    private void recurPerm(int arr[], List<Integer> ds, List<List<Integer>> ans, int map[]){
-        if(ds.size()==arr.length){
-            ans.add(new ArrayList<>(ds));
-        }
-        for(int i=0;i<arr.length;i++){
-            if(map[i]!=1){
-                map[i]=1;
+    public void premSwap(int index, int arr[], List<List<Integer>> ans){
+        if(index==arr.length){
+            List<Integer> ds = new ArrayList<>();
+            for(int i=0;i<arr.length;i++){
                 ds.add(arr[i]);
-                recurPerm(arr,ds,ans,map);
-                ds.remove(ds.size()-1);
-                map[i]=0;
             }
+            ans.add(new ArrayList<>(ds));
+            return;
+        }
+        for(int i=index;i<arr.length;i++){
+            swap(i, index,arr);
+            premSwap(index+1, arr, ans);
+            swap(i, index,arr);
         }
     }
-    public List<List<Integer>> permute(int[] nums) {
-     List<List<Integer>> ans = new ArrayList<>();
-     List<Integer> ds =new ArrayList<>();
-     int map[] = new int[nums.length];
-     recurPerm(nums, ds, ans,map);
-     return ans;
+    public void swap(int i, int j, int arr[]){
+        int temp = arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    public List<List<Integer>> permute(int[] arr) {
+        List<List<Integer>> ans = new ArrayList<>();
+        premSwap(0, arr, ans);
+        return ans;
     }
 }
