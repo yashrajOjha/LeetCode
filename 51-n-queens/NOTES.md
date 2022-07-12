@@ -1,3 +1,4 @@
+```
 class Solution {
     /*lets check if it is safe to fill up or not, if a queen can be placed at a position or not.
     We need to check for upper left diagonal (not right we havent yet placed a Q on the right), on the horizontal left, and lower left diagonal. */
@@ -63,3 +64,4 @@ class Solution {
         return res;
     }
 }
+```
