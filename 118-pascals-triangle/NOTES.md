@@ -1,0 +1,1 @@
+For every every row we create an array list, move j until i, if j is 0 and j is equal to i we assign 1 to that position, else we add previous(j-1) + previous(j). After the j loop we make previous as current row and add the current row to the main list.
