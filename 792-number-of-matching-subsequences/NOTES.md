@@ -1,0 +1,2 @@
+First put all the words into a hashmap, so if there are repeated subseqences we dont need to traverse the entire string again,
+Now traverse through the hashmap for every work, if the character of the hashmap key string and the input string match, increase pointer at hashmap key string, once this pointer reaches end of the hashmap key string, then it means there has been a subsequence, we get the number of such sequences and add it to the count value;
