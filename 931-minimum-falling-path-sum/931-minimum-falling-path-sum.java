@@ -1,25 +1,28 @@
 class Solution {
-    public int func(int matrix[][], int row, int col, int dp[][]){
-        if(col>=matrix.length ||col<0) return (int)Math.pow(10,9);
-        if(row==matrix.length-1) return matrix[row][col];
-        
-        if(dp[row][col]!=-1) return dp[row][col];
-        
-        int down = matrix[row][col] + func(matrix,row+1,col,dp);
-        int dr = matrix[row][col] + func(matrix,row+1,col+1,dp);
-        int dl = matrix[row][col] + func(matrix,row+1,col-1,dp);
-        
-        return dp[row][col]=Math.min(down, Math.min(dr, dl));
-    }
     public int minFallingPathSum(int[][] matrix) {
-        int minval = Integer.MAX_VALUE;
-        int dp[][]= new int[matrix.length][matrix.length];
-        for(int i=0;i<matrix.length;i++){
-            Arrays.fill(dp[i],-1);
-        }
+        int dp[][] = new int[matrix.length][matrix.length];
         for(int j=0;j<matrix.length;j++){
-            minval = Math.min(minval, func(matrix,0,j,dp));
+            dp[0][j] = matrix[0][j];
         }
-        return minval;
+        for(int i=1;i<matrix.length;i++){
+            for(int j=0;j<matrix.length;j++){
+                int down = matrix[i][j] + dp[i-1][j];
+                
+                int leftDiagonal= matrix[i][j];
+                if(j-1>=0) leftDiagonal += dp[i-1][j-1];
+                else leftDiagonal += (int)Math.pow(10,9);
+            
+                int rightDiagonal = matrix[i][j];
+                if(j+1<matrix.length) rightDiagonal += dp[i-1][j+1];
+                else rightDiagonal += (int)Math.pow(10,9);
+                
+                dp[i][j] = Math.min(down, Math.min(leftDiagonal, rightDiagonal));
+            }
+        }
+        int minVal = (int) Math.pow(10,9);
+        for(int i=0;i<matrix.length;i++){
+            minVal = Math.min(minVal, dp[matrix.length-1][i]);
+        }
+        return minVal;
     }
 }
