@@ -1,0 +1,2 @@
+- The easy approach is that we iterate all elements in the matrix and and add elements into the maxHeap. The maxHeap will keep up to k smallest elements (because when maxHeap is over size of k, we do remove the top of maxHeap which is the largest one). Finally, the top of the maxHeap is the kth smallest element in the matrix.
+- This approach leads this problem become the same with 215. Kth Largest Element in an Array, which doesn't take the advantage that the matrix is already sorted by rows and by columns.
