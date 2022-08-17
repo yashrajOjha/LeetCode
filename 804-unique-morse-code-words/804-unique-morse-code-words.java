@@ -5,7 +5,7 @@ class Solution {
         for(String w:words){
             String s="";
             for(char ch:w.toCharArray()){
-                s+=values[(int)ch-97];
+                s+=values[ch-'a'];
             }
             set.add(s);
         }
