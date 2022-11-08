@@ -1,0 +1,1 @@
+If the last character of the stack is upper case or lower case of the current character in the string, then we need to skip character in the string and pop out the last element from the stack, else we need to push the character to the stack.
