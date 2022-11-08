@@ -25,7 +25,7 @@ public class LISprint {
         // System.out.println(arr[lastindex]);
         while(hash[lastindex]!=lastindex){
             //till we dont reach initialization value
-            // System.out.println(hash[lastindex]); updating the hashvalue 
+            // System.out.println(hash[lastindex]);
             lastindex= hash[lastindex];
             temp.add(arr[lastindex]);
         }
