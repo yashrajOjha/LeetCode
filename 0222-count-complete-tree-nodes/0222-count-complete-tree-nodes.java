@@ -14,15 +14,28 @@
  * }
  */
 class Solution {
-     int count=0;
-    public void dfs(TreeNode root){
-        if(root==null) return;
-        count++;
-        if(root.left!=null) dfs(root.left);
-        if(root.right!=null) dfs(root.right);
+    public int getHeightLeft(TreeNode root){
+        int count=0;
+        while(root.left!=null){
+            count++;
+            root=root.left;
+        }
+        return count;
+    }
+    public int getHeightRight(TreeNode root){
+        int count=0;
+        while(root.right!=null){
+            count++;
+            root=root.right;
+        }
+        return count;
     }
     public int countNodes(TreeNode root) {
-        dfs(root);
-        return count;
+        if(root==null) return 0;
+        int left = getHeightLeft(root);
+        int right = getHeightRight(root);
+        if(left==right) return (2<<left)-1; 
+        //when both the sides height is same, then its a full binary tree and height can be computed through 2powerh-1
+        else return 1+countNodes(root.left)+countNodes(root.right); //if the heights are unequal then count that node and move on to the next level to see heights
     }
 }
