@@ -12,9 +12,19 @@ class Solution {
         return dp[val]=min;
     }
     public int numSquares(int n) {
-        int root = (int)Math.sqrt(n);
+        // int root = (int)Math.sqrt(n);
         dp = new int[n+1];
-        Arrays.fill(dp,-1);
-        return func(n,root);
+        Arrays.fill(dp,(int)Math.pow(10,9));
+        dp[0]=0; //when val is 0 you can make a sum with least squares
+        for(int i=1;i<=n;i++){
+            for(int j=1;j*j<=i;j++){
+                int sq=j*j;
+                if(i-sq>=0){
+                    dp[i] = Math.min(dp[i],1+dp[i-sq]);
+                }
+            }
+        }
+        return dp[n];
+        // return func(n,root);
     }
 }
