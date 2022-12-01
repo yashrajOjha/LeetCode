@@ -1,19 +1,12 @@
 class Solution {
-    public boolean halvesAreAlike(String s) {
-        int l=0,r=s.length()-1;
-        int countleft=0;
-        int countright=0;
-        char lc,rc;
-        while(l<r){
-            lc = s.charAt(l);
-            rc = s.charAt(r);
-            if(lc=='a' || lc=='e' || lc=='i' || lc=='o' || lc=='u' ||
-               lc=='A' || lc=='E' || lc=='I' || lc=='O' || lc=='U') countleft++;
-            if(rc=='a' || rc=='e' || rc=='i' || rc=='o' || rc=='u' ||
-               rc=='A' || rc=='E' || rc=='I' || rc=='O' || rc=='U') countright++;
-            l++;
-            r--;
+    String vowels = "aeiouAEIOU";
+    
+    public boolean halvesAreAlike(String S) {
+        int mid = S.length() / 2, ans = 0;
+        for (int i = 0, j = mid; i < mid; i++, j++) {
+            if (vowels.indexOf(S.charAt(i)) >= 0) ans++;
+            if (vowels.indexOf(S.charAt(j)) >= 0) ans--;
         }
-        return countleft==countright;
+        return ans == 0;
     }
 }
